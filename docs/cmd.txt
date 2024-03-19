@@ -1,0 +1,15 @@
+diesel --database-url postgres://postgres:admin@127.0.0.1:5433/AirPort
+
+diesel print-schema > src/schema.rs
+diesel migration generate --diff-schema create_air_port
+
+RUST_LOG=rest_api=info,actix=info,diesel_migrations=info
+DATABASE_URL=postgres://postgres:admin@127.0.0.1:5433/AirPort
+HOST=172.20.10.3
+PORT=4001
+
+26.33.180.81
+
+ 192.168.43.61
+
+curl -X GET -H "Content-Type:application/json" --data "{\"name\":\"worker1\",\"password\":\"1234\"}" http://26.33.180.81:4001/login
